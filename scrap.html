@@ -1,0 +1,1019 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" language="JavaScript">
+<!--
+ClientTime = new Date();
+Hours = ClientTime.getHours() - 09;
+Minutes = ClientTime.getMinutes() - 04;
+Seconds = ClientTime.getSeconds() - 51;
+
+Year = ClientTime.getYear() - 10;
+Month = ClientTime.getMonth() - 07;
+Day = ClientTime.getDate() - 07;
+
+function showFilled(Value) {
+return (Value > 9) ? "" + Value : "0" + Value;
+}
+function StartClock24() {
+TheTime = new Date();
+TheTime.setHours(TheTime.getHours() - Hours);
+TheTime.setMinutes(TheTime.getMinutes() - Minutes);
+TheTime.setSeconds(TheTime.getSeconds() - Seconds);
+
+TheTime.setYear(TheTime.getYear() - Year);
+TheTime.setMonth(TheTime.getMonth() - Month);
+TheTime.setDate(TheTime.getDate() - Day);
+document.getElementById('clock').innerHTML = "ServerTime : " + showFilled(TheTime.getDate()) + "-" + showFilled(TheTime.getMonth()) + "-20" + showFilled(TheTime.getYear()) + " " + showFilled(TheTime.getHours()) + ":" + showFilled(TheTime.getMinutes()) + ":" + showFilled(TheTime.getSeconds());
+setTimeout("StartClock24()",1000)
+}
+
+function switchDisplay($show)
+{
+	if(document.getElementById($show).style.display == 'none'){document.getElementById($show).style.display = 'block';}
+	else{document.getElementById($show).style.display = 'none';}
+}
+
+//-->
+</script>
+
+
+
+
+
+  <script type="text/javascript" src="./DbAdmin/DbAdmin-assets/DbAdmin.js"></script> 
+  <link rel="stylesheet" href="./DbAdmin/DbAdmin-assets/DbAdmin.css" type="text/css">
+
+	<style>
+	#header { 
+		width: 100%; 
+		background-color: #bfd62f;
+	}
+	
+	#header img { 
+		margin: 10px; 
+	}
+	
+	#menu { 
+		height: 110px;
+		width: 100%; 
+		margin-top: 10px; 
+		background-color: #0077a8; 
+		overflow: hidden; 
+		color: #bfd62f;  
+	}
+
+	#menu table tr td {
+		padding-left: 15px; 
+		color: #bfd62f;
+	}
+	#menu table tr td a {
+		color: #FFFFFF;
+	}
+
+	#menu div {
+		padding-left: 15px;
+		padding-top: 2px;
+		float: left;
+	}
+	
+	#menu div span {
+		width: 400px;
+		display: block;
+		float: left; 
+	}
+	
+	#menu div a {
+		color: #FFFFFF;
+	}
+	</style>
+
+</head><body onload="StartClock24()">
+
+<div id="header" style="background-image: url(&quot;./images/microgaming-icon.gif&quot;); background-repeat: no-repeat; height: 70px;">
+	<div style="padding-right: 20px; float: right;">
+		<div id="clock" style="color: rgb(255, 255, 255); font-weight: bold; padding-top: 10px;" align="right"></div>
+		<div style="color: rgb(255, 255, 255); font-weight: bold;" align="right">ServerIp : 93.158.66.21</div>
+	</div>
+	<div style="float: right; padding-right: 30px; color: rgb(255, 255, 255); font-weight: bold; font-size: 46px; padding-top: 10px;">Netherlands</div>
+</div>
+
+<div id="menu">
+<table>
+	<tbody><tr>
+		<td><strong>Manager:</strong>
+<a href="index.php?manager=default">default</a> | <a href="index.php?manager=int">int</a> | 
+		</td>
+	</tr>
+	<tr>
+		<td width="400">
+			<strong>Players:</strong> 
+			<a href="./DbAdminWrapper.php?tableName=users_info_view_default&amp;page=showSearch&amp;sortField=saldo&amp;sortFieldWay=DESC">Users</a> | 
+			<a href="./activeusers.php">Active Users</a> | 
+			<a href="./DbAdminWrapper.php?tableName=users_info_view_default&amp;specialPage=newestPlayers">Stats users</a> | 
+			<a href="./usersListStats.php">Stats list</a> |
+			<a href="./checkdoubles.php">Search Doubles</a> |
+		</td>
+		<td>
+			<strong>Financial:</strong> 
+			<a href="./DbAdminWrapper.php?tableName=payments_information_default">Payments</a> |  
+			<a href="./totalPayed.php">Total Payed</a> |  
+			<a href="./searchexternalpaymentid.php">Search on Ext. PaymentID</a> |  
+			<a href="./fraudpayments.php">Fraud payments suspected</a> |  
+		</td>
+	</tr>
+	<tr>
+		<td width="350">
+			<strong>Mailing:</strong>
+			<a href="viewmailing.php">View</a> | 
+			<a href="writemailing.php">Write</a> | 
+			<a href="fillbatch.php">Fill batch</a> | 
+			<a href="send.php">To be send</a> | 
+			<a href="sendmailings.php">Send</a> | 
+		</td>
+		<td>
+			<strong>Payouts:</strong> 
+			<a href="./payouts.php">Payouts</a> |  
+<!-- 			<a href='./payouts.php?page=ready'>Payouts ready</a> |  --> 
+			<a href="./payouts.php?page=onhold">Payouts on hold</a> |  
+			<a href="./payouts.php?page=deleted">Payouts deleted</a> |  
+			<a href="./payouts.php?page=pay">Pay</a> |  
+			<a href="./payed.php">Payed</a> |  
+		</td>
+	</tr>
+	<tr>
+		<td width="350">
+			<strong>Bonus:</strong>
+			<a href="./newplayerbonus.php">New player</a> | 
+			<a href="./specialsbonus.php">Specials</a> | 
+			<a href="./bonuscodes.php">Bonuscodes</a> | 
+			<a href="./bonuscodesused.php">Bonuscodes used</a> | 
+			<a href="./bonussesreceived.php">Received</a>
+		</td>
+		<td>
+			<strong>Revenue:</strong> 
+			<a href="./revenuestats.php">Revenue</a> |  
+			<a href="./revenuewebmasters.php">Revenue Webmasters</a> |  
+			<a href="./blockedrevenue.php">Blocked Players Revenue</a> |  
+		</td>
+	</tr>
+	<tr>
+		<td width="350">
+			<strong>Backup:</strong>
+			<a href="./backup.php">Backup</a> |  
+		</td>
+		<td>
+			<strong>Etc:</strong>
+			<a href="./api_errors.php">Api errors</a> |  
+			<a href="./comments.php">Comments</a> |  
+			<a href="./checkip.php">Check IP</a> |  
+			<a href="./validccpayments.php">Valid CC payments</a> |  
+			<a href="./gamecountrynobonus.php">Game Country no bonus</a> |  
+
+		</td>
+	</tr>
+</tbody></table>
+</div>
+
+	<div>
+	<!--array (
+  0 => 
+  array (
+    'Field' => 'id',
+    'Type' => 'int(10) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => 'PRI',
+    'Default' => NULL,
+    'Extra' => 'auto_increment',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => NULL,
+  ),
+  1 => 
+  array (
+    'Field' => 'username',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => 'UNI',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  2 => 
+  array (
+    'Field' => 'password',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  3 => 
+  array (
+    'Field' => 'firstname',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  4 => 
+  array (
+    'Field' => 'lastname',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  5 => 
+  array (
+    'Field' => 'gender',
+    'Type' => 'enum(\'male\',\'female\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'male',
+        1 => 'male',
+      ),
+      1 => 
+      array (
+        0 => 'female',
+        1 => 'female',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  6 => 
+  array (
+    'Field' => 'address',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  7 => 
+  array (
+    'Field' => 'zipcode',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  8 => 
+  array (
+    'Field' => 'city',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  9 => 
+  array (
+    'Field' => 'country',
+    'Type' => 'varchar(100)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 100,
+    'typeIntrn' => 'text',
+  ),
+  10 => 
+  array (
+    'Field' => 'phone',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  11 => 
+  array (
+    'Field' => 'secretquestion',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  12 => 
+  array (
+    'Field' => 'secretanswer',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  13 => 
+  array (
+    'Field' => 'bankname',
+    'Type' => 'varchar(80)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 80,
+    'typeIntrn' => 'text',
+  ),
+  14 => 
+  array (
+    'Field' => 'bankaccount',
+    'Type' => 'varchar(60)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 60,
+    'typeIntrn' => 'text',
+  ),
+  15 => 
+  array (
+    'Field' => 'bankaccountextra',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  16 => 
+  array (
+    'Field' => 'iban',
+    'Type' => 'varchar(60)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 60,
+    'typeIntrn' => 'text',
+  ),
+  17 => 
+  array (
+    'Field' => 'bic',
+    'Type' => 'varchar(60)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 60,
+    'typeIntrn' => 'text',
+  ),
+  18 => 
+  array (
+    'Field' => 'bankcity',
+    'Type' => 'varchar(60)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 60,
+    'typeIntrn' => 'text',
+  ),
+  19 => 
+  array (
+    'Field' => 'email',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  20 => 
+  array (
+    'Field' => 'affiliate',
+    'Type' => 'int(11)',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 11,
+    'typeIntrn' => 'text',
+  ),
+  21 => 
+  array (
+    'Field' => 'manager',
+    'Type' => 'varchar(20)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => 'MUL',
+    'Default' => 'default',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 20,
+    'typeIntrn' => 'text',
+  ),
+  22 => 
+  array (
+    'Field' => 'bonus',
+    'Type' => 'decimal(10,2) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => '0.00',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  23 => 
+  array (
+    'Field' => 'saldo',
+    'Type' => 'decimal(10,2) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => '0.00',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  24 => 
+  array (
+    'Field' => 'credits_ingame',
+    'Type' => 'decimal(10,2) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  25 => 
+  array (
+    'Field' => 'time_signup',
+    'Type' => 'int(11) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => 'time',
+    'length' => 11,
+    'typeIntrn' => 'time',
+  ),
+  26 => 
+  array (
+    'Field' => 'time_last_play',
+    'Type' => 'int(11) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => 'time',
+    'length' => 11,
+    'typeIntrn' => 'time',
+  ),
+  27 => 
+  array (
+    'Field' => 'ip_signup',
+    'Type' => 'varchar(15)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 15,
+    'typeIntrn' => 'text',
+  ),
+  28 => 
+  array (
+    'Field' => 'ip_last',
+    'Type' => 'varchar(15)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 15,
+    'typeIntrn' => 'text',
+  ),
+  29 => 
+  array (
+    'Field' => 'last_game_played',
+    'Type' => 'varchar(40)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 40,
+    'typeIntrn' => 'text',
+  ),
+  30 => 
+  array (
+    'Field' => 'last_located_country',
+    'Type' => 'varchar(10)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  31 => 
+  array (
+    'Field' => 'payoutchecked',
+    'Type' => 'enum(\'yes\',\'ready\',\'onhold\',\'deleted\',\'erased\',\'no\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'yes',
+        1 => 'yes',
+      ),
+      1 => 
+      array (
+        0 => 'ready',
+        1 => 'ready',
+      ),
+      2 => 
+      array (
+        0 => 'onhold',
+        1 => 'onhold',
+      ),
+      3 => 
+      array (
+        0 => 'deleted',
+        1 => 'deleted',
+      ),
+      4 => 
+      array (
+        0 => 'erased',
+        1 => 'erased',
+      ),
+      5 => 
+      array (
+        0 => 'no',
+        1 => 'no',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  32 => 
+  array (
+    'Field' => 'firstpaymentmade',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'n',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  33 => 
+  array (
+    'Field' => 'revenueaffiliate',
+    'Type' => 'enum(\'y\',\'n\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'y',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+      1 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  34 => 
+  array (
+    'Field' => 'active',
+    'Type' => 'enum(\'y\',\'n\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'y',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+      1 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  35 => 
+  array (
+    'Field' => 'playerchecked',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'n',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  36 => 
+  array (
+    'Field' => 'info',
+    'Type' => 'varchar(255)',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => 'MUL',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 255,
+    'typeIntrn' => 'text',
+  ),
+  37 => 
+  array (
+    'Field' => 'saldo_reken',
+    'Type' => 'decimal(10,2)',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  38 => 
+  array (
+    'Field' => 'viplevel',
+    'Type' => 'mediumint(10) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  39 => 
+  array (
+    'Field' => 'displayLoginError',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'n',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  40 => 
+  array (
+    'Field' => 'antifraud_addr_selection',
+    'Type' => 'int(10) unsigned',
+    'Collation' => NULL,
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'length' => 10,
+    'typeIntrn' => 'text',
+  ),
+  41 => 
+  array (
+    'Field' => 'antifraud_checked',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  42 => 
+  array (
+    'Field' => 'profile_trusted',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => NULL,
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  43 => 
+  array (
+    'Field' => 'payment_trusted',
+    'Type' => 'enum(\'n\',\'y\',\'p\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'p',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+      2 => 
+      array (
+        0 => 'p',
+        1 => 'p',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+  44 => 
+  array (
+    'Field' => 'payment_AlwaysTrusted',
+    'Type' => 'enum(\'n\',\'y\')',
+    'Collation' => 'latin1_swedish_ci',
+    'Null' => 'NO',
+    'Key' => '',
+    'Default' => 'n',
+    'Extra' => '',
+    'Privileges' => 'select,insert,update',
+    'Comment' => '',
+    'values' => 
+    array (
+      0 => 
+      array (
+        0 => 'n',
+        1 => 'n',
+      ),
+      1 => 
+      array (
+        0 => 'y',
+        1 => 'y',
+      ),
+    ),
+    'typeIntrn' => 'enum',
+  ),
+)--><h1>users_data - Aanpassen</h1><a href="/php/gameadmin/DbAdminWrapper.php?tableName=users_data&amp;page=showListing"><img src="./DbAdmin/DbAdmin-assets/home.gif" alt=""></a><a href="/php/gameadmin/DbAdminWrapper.php?tableName=users_data&amp;page=showAdd"><img src="./DbAdmin/DbAdmin-assets/add.gif" alt=""></a><a onclick="toggleSearch();"><img src="./DbAdmin/DbAdmin-assets/search.gif" alt=""></a><br><form enctype="multipart/form-data" method="post" action="/php/gameadmin/DbAdminWrapper.php?tableName=users_data&amp;page=postEdit&amp;PRI=16087" onsubmit="return maySubmit;"> 
+					<input name="page" value="postEdit" type="hidden">
+					<input name="PRI" value="16087" type="hidden"><table>
+ <tbody>
+  <tr><td class="fieldTitle">username</td><td class="fieldContent"><input maxlength="255" name="username" value="papitocur1668" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">password</td><td class="fieldContent"><input maxlength="255" name="password" value="1668adrian" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">firstname</td><td class="fieldContent"><input maxlength="255" name="firstname" value="Kin" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">lastname</td><td class="fieldContent"><input maxlength="255" name="lastname" value="Yan" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">gender</td><td class="fieldContent"><select name="gender"><option value="male" selected="selected">male</option><option value="female">female</option></select></td></tr>
+  <tr><td class="fieldTitle">address</td><td class="fieldContent"><input maxlength="255" name="address" value="groene Hilledijk 402 B" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">zipcode</td><td class="fieldContent"><input maxlength="255" name="zipcode" value="3075 EE" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">city</td><td class="fieldContent"><input maxlength="255" name="city" value="ROTTERDAM" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">country</td><td class="fieldContent"><input maxlength="100" name="country" value="NL" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">phone</td><td class="fieldContent"><input maxlength="255" name="phone" value="0681125081" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">secretquestion</td><td class="fieldContent"><input maxlength="255" name="secretquestion" value="mothersname" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">secretanswer</td><td class="fieldContent"><input maxlength="255" name="secretanswer" value="TSE" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bankname</td><td class="fieldContent"><input maxlength="80" name="bankname" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bankaccount</td><td class="fieldContent"><input maxlength="60" name="bankaccount" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bankaccountextra</td><td class="fieldContent"><input maxlength="255" name="bankaccountextra" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">iban</td><td class="fieldContent"><input maxlength="60" name="iban" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bic</td><td class="fieldContent"><input maxlength="60" name="bic" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bankcity</td><td class="fieldContent"><input maxlength="60" name="bankcity" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">email</td><td class="fieldContent"><input maxlength="255" name="email" value="papitocur@yahoo.com" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">affiliate</td><td class="fieldContent"><input maxlength="11" name="affiliate" value="67" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">manager</td><td class="fieldContent"><input maxlength="20" name="manager" value="default" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">bonus</td><td class="fieldContent"><input maxlength="10" name="bonus" value="0.00" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">saldo</td><td class="fieldContent"><input maxlength="10" name="saldo" value="0.00" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">credits_ingame</td><td class="fieldContent"><input maxlength="10" name="credits_ingame" value="0.00" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">time_signup</td><td class="fieldContent"><input maxlength="19" name="time_signup" value="17:19:03 12-06-2010" class="inputFields_time" type="text"></td></tr>
+  <tr><td class="fieldTitle">time_last_play</td><td class="fieldContent"><input maxlength="19" name="time_last_play" value="" class="inputFields_time" type="text"></td></tr>
+  <tr><td class="fieldTitle">ip_signup</td><td class="fieldContent"><input maxlength="15" name="ip_signup" value="85.147.68.244" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">ip_last</td><td class="fieldContent"><input maxlength="15" name="ip_last" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">last_game_played</td><td class="fieldContent"><input maxlength="40" name="last_game_played" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">last_located_country</td><td class="fieldContent"><input maxlength="10" name="last_located_country" value="" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">payoutchecked</td><td class="fieldContent"><select name="payoutchecked"><option value="yes">yes</option><option value="ready">ready</option><option value="onhold">onhold</option><option value="deleted">deleted</option><option value="erased">erased</option><option value="no" selected="selected">no</option></select></td></tr>
+  <tr><td class="fieldTitle">firstpaymentmade</td><td class="fieldContent"><select name="firstpaymentmade"><option value="n" selected="selected">n</option><option value="y">y</option></select></td></tr>
+  <tr><td class="fieldTitle">revenueaffiliate</td><td class="fieldContent"><select name="revenueaffiliate"><option value="y" selected="selected">y</option><option value="n">n</option></select></td></tr>
+  <tr><td class="fieldTitle">active</td><td class="fieldContent"><select name="active"><option value="y" selected="selected">y</option><option value="n">n</option></select></td></tr>
+  <tr><td class="fieldTitle">playerchecked</td><td class="fieldContent"><select name="playerchecked"><option value="n" selected="selected">n</option><option value="y">y</option></select></td></tr>
+  <tr><td class="fieldTitle">info</td><td class="fieldContent"><input maxlength="255" name="info" value="nl5658993f5h-1018275b3i" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">saldo_reken</td><td class="fieldContent"><input maxlength="10" name="saldo_reken" value="0.00" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">viplevel</td><td class="fieldContent"><input maxlength="10" name="viplevel" value="0" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">displayLoginError</td><td class="fieldContent"><select name="displayLoginError"><option value="n" selected="selected">n</option><option value="y">y</option></select></td></tr>
+  <tr><td class="fieldTitle">antifraud_addr_selection</td><td class="fieldContent"><input maxlength="10" name="antifraud_addr_selection" value="1" class="inputFields_text" type=""></td></tr>
+  <tr><td class="fieldTitle">antifraud_checked</td><td class="fieldContent"><select name="antifraud_checked"><option value="n">n</option><option value="y" selected="selected">y</option></select></td></tr>
+  <tr><td class="fieldTitle">profile_trusted</td><td class="fieldContent"><select name="profile_trusted"><option value="n">n</option><option value="y" selected="selected">y</option></select></td></tr>
+  <tr><td class="fieldTitle">payment_trusted</td><td class="fieldContent"><select name="payment_trusted"><option value="n" selected="selected">n</option><option value="y">y</option><option value="p">p</option></select></td></tr>
+  <tr><td class="fieldTitle">payment_AlwaysTrusted</td><td class="fieldContent"><select name="payment_AlwaysTrusted"><option value="n" selected="selected">n</option><option value="y">y</option></select></td></tr>
+  <tr><td colspan="2"><input class="submit" value="Aanpassen" onclick='maySubmit="true"' type="submit"></td></tr>
+ </tbody>
+</table>
+<br><br><br> </form></div>
+	</body></html>
