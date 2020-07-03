@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
-import os
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
@@ -12,7 +11,6 @@ if show_browser:
 else:
     browser = webdriver.Chrome(options=options)
 
-
 browser.get("file:///Users/shahanurmdsharif/development/python/scrapping/scrap.html")
 time.sleep(2)
 html = browser.page_source
@@ -22,6 +20,5 @@ source = BeautifulSoup(html, features="html.parser")
 forms = source.find_all('form')
 
 print(forms[9])
-
 
 browser.close()
