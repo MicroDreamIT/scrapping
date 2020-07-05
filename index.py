@@ -19,6 +19,9 @@ source = BeautifulSoup(html, features="html.parser")
 
 forms = source.find_all('form')
 
-print(forms[9])
+table = forms[0].find('tbody')
+username = table.find('input', {"name": "username"})
+username = username.get('value')
+print(username)
 
 browser.close()
